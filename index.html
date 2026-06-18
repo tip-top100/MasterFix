@@ -5,70 +5,162 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Николай — Ремонт бытовой техники</title>
     
-    <meta property="og:title" content="Ремонт бытовой техники — Быстро и с гарантией">
-    <meta property="og:description" content="Привет, соседи! Я Николай, ваш мастер по ремонту. Жмите на картинку, чтобы сохранить контакты.">
-    <meta property="og:image" content="avatar.jpg"> 
+    <!-- Open Graph разметка для красивых ссылок в WhatsApp/Telegram -->
+    <meta property="og:title" content="Николай — Ремонт бытовой техники">
+    <meta property="og:description" content="Быстрый выезд, честные цены и гарантия. Жмите на картинку, чтобы сохранить контакты!">
+    <meta property="og:image" content="avatar.jpg">
+    <meta property="og:type" content="website">
     
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #f4f7f6; 
+            background-color: #f0f4f8; 
             color: #333; 
-            text-align: center; 
-            padding: 20px; 
-            margin: 0;
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6; 
         }
-        .card { 
+        .container { 
+            max-width: 480px; 
+            margin: 0 auto; 
             background: #fff; 
-            max-width: 400px; 
-            margin: 20px auto; 
-            padding: 30px 20px; 
-            border-radius: 15px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            min-height: 100vh; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); 
+            padding-bottom: 30px; 
         }
-        .avatar { 
-            width: 120px; 
-            height: 120px; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            border: 4px solid #ff9800; /* Оранжевая рамка в цвет каски */
-            margin-bottom: 15px; 
-            background-color: #eee;
+        .header { 
+            text-align: center; 
+            padding: 40px 20px 25px; 
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); 
+            color: white; 
+            border-bottom-left-radius: 25px; 
+            border-bottom-right-radius: 25px; 
         }
-        h1 { font-size: 26px; margin: 10px 0; color: #222; }
-        p { color: #666; margin-bottom: 25px; line-height: 1.5; font-size: 15px; }
         
-        /* Стили для кнопок */
-        .btn { 
-            display: block; 
-            width: 100%; 
-            padding: 15px; 
-            margin-bottom: 12px; 
-            border-radius: 10px; 
-            text-decoration: none; 
+        /* Специальная обертка для автоматического кадрирования фото */
+        .avatar-wrapper {
+            width: 140px; 
+            height: 140px; 
+            margin: 0 auto 15px;
+            border-radius: 50%; 
+            border: 4px solid #ff9800; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+            background: #e0e0e0;
+        }
+        .avatar-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Фокус на верхней части фото (лицо) и зум */
+            object-position: center 20%;
+            transform: scale(1.35); 
+        }
+
+        h1 { 
+            font-size: 26px; 
+            margin: 0 0 5px; 
+            font-weight: 700;
+        }
+        .subtitle { 
+            font-size: 15px; 
+            opacity: 0.9; 
+            margin-bottom: 20px; 
+        }
+        .phone-link { 
+            display: inline-block; 
+            font-size: 22px; 
             font-weight: bold; 
             color: #fff; 
-            font-size: 16px;
-            transition: transform 0.2s, opacity 0.3s; 
-            box-sizing: border-box;
+            text-decoration: none; 
+            background: rgba(255,255,255,0.15); 
+            padding: 10px 20px; 
+            border-radius: 30px; 
+            transition: background 0.3s;
         }
-        .btn:active { transform: scale(0.98); }
-        .btn-phone { background-color: #333; }
+        .phone-link:active { background: rgba(255,255,255,0.25); }
+        .content { padding: 25px 20px; }
+        h2 { 
+            font-size: 20px; 
+            color: #1e3c72; 
+            border-bottom: 2px solid #ff9800; 
+            padding-bottom: 8px; 
+            margin-top: 0; 
+        }
+        .features, .services { 
+            list-style: none; 
+            padding: 0; 
+            margin: 0 0 30px; 
+        }
+        .features li, .services li { 
+            margin-bottom: 12px; 
+            padding-left: 32px; 
+            position: relative; 
+            font-size: 15px; 
+            color: #444;
+        }
+        .features li::before { content: '✅'; position: absolute; left: 0; top: 0; font-size: 18px; }
+        .services li::before { content: '🔧'; position: absolute; left: 0; top: 0; font-size: 18px; }
+        .buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        .btn { 
+            display: block; 
+            text-align: center; 
+            padding: 16px; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            font-size: 16px; 
+            text-decoration: none; 
+            color: white; 
+            transition: transform 0.2s, opacity 0.3s; 
+            box-sizing: border-box; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-call { background-color: #ff9800; }
         .btn-wa { background-color: #25D366; }
         .btn-tg { background-color: #0088cc; }
+        .btn:active { transform: scale(0.98); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .footer { text-align: center; padding: 20px; font-size: 13px; color: #888; border-top: 1px solid #eee; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <img src="avatar.jpg" alt="Мастер Николай" class="avatar">
+    <div class="container">
+        <div class="header">
+            <div class="avatar-wrapper">
+                <img src="avatar.jpg" alt="Мастер Николай">
+            </div>
+            <h1>Николай</h1>
+            <div class="subtitle">Ваш честный мастер по ремонту техники</div>
+            <a href="tel:+798177111178" class="phone-link">📞 +7 (981) 771-11-78</a>
+        </div>
         
-        <h1>Николай</h1>
-        <p>Профессиональный ремонт бытовой техники.<br>Быстрый выезд, честные цены и гарантия.</p>
+        <div class="content">
+            <h2>Как я работаю:</h2>
+            <ul class="features">
+                <li><strong>Запчасти с собой.</strong> В 90% случаев техника ремонтируется за 1 визит. Привожу ходовые детали для вашей модели.</li>
+                <li><strong>Без скрытых накруток.</strong> Работаю на себя, цены ниже, чем в сервисных центрах.</li>
+                <li><strong>Официальная гарантия.</strong> Оставляю электронный чек и гарантию на все выполненные работы.</li>
+            </ul>
 
-        <a href="tel:+79990000000" class="btn btn-phone">📞 Позвонить</a>
-        <a href="https://wa.me/79990000000" class="btn btn-wa">💬 Написать в WhatsApp</a>
-        <a href="https://t.me/ваш_телеграм_ник" class="btn btn-tg">✈️ Написать в Telegram</a>
+            <h2>Ремонтирую на дому:</h2>
+            <ul class="services">
+                <li>Стиральные машины</li>
+                <li>Посудомоечные машины</li>
+                <li>Холодильники</li>
+                <li>Электрические плиты и духовые шкафы</li>
+            </ul>
+
+            <h2>Срочный вызов мастера:</h2>
+            <div class="buttons">
+                <a href="tel:+798177111178" class="btn btn-call">📞 Позвонить сейчас</a>
+                <a href="https://wa.me/798177111178" class="btn btn-wa">💬 Написать в WhatsApp</a>
+                <a href="https://t.me/+798177111178" class="btn btn-tg">✈️ Написать в Telegram</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Работаю ежедневно.<br>Быстрый выезд в ваш район.
+        </div>
     </div>
 
 </body>
