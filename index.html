@@ -36,11 +36,11 @@
             border-bottom-right-radius: 25px; 
         }
         
-        /* Делаем прямоугольник со скругленными углами */
+        /* Прямоугольник со скругленными углами для полного фото */
         .avatar-wrapper {
             width: 180px; 
             margin: 0 auto 15px;
-            border-radius: 25px; /* Скругленные углы вместо круга */
+            border-radius: 25px; 
             border: 4px solid #ff9800; 
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             overflow: hidden;
@@ -49,7 +49,7 @@
         .avatar-wrapper img {
             display: block;
             width: 100%;
-            height: auto; /* Показываем всё фото целиком без искажений */
+            height: auto; 
         }
 
         h1 { 
@@ -97,6 +97,7 @@
         .features li::before { content: '✅'; position: absolute; left: 0; top: 0; font-size: 18px; }
         .services li::before { content: '🔧'; position: absolute; left: 0; top: 0; font-size: 18px; }
         .buttons { display: flex; flex-direction: column; gap: 12px; margin-top: 10px; }
+        
         .btn { 
             display: block; 
             text-align: center; 
@@ -109,10 +110,37 @@
             transition: transform 0.2s, opacity 0.3s; 
             box-sizing: border-box; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
         .btn-call { background-color: #ff9800; }
         .btn-wa { background-color: #25D366; }
         .btn-tg { background-color: #0088cc; }
+        
+        /* Стили для новых кнопок */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #ddd;
+        }
+        .btn-secondary {
+            flex: 1;
+            background-color: #f1f5f9;
+            color: #1e3c72;
+            padding: 12px 5px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        .btn-secondary:active { transform: scale(0.98); background-color: #e2e8f0; }
+
         .btn:active { transform: scale(0.98); box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .footer { text-align: center; padding: 20px; font-size: 13px; color: #888; border-top: 1px solid #eee; margin-top: 10px; }
     </style>
@@ -145,18 +173,54 @@
                 <li><strong>Сломалось что-то еще? Просто наберите мне!</strong></li>
             </ul>
 
-            <h2>Срочный вызов мастера:</h2>
+            <h2>Связь с мастером:</h2>
             <div class="buttons">
                 <a href="tel:+798177111178" class="btn btn-call">📞 Позвонить сейчас</a>
                 <a href="https://wa.me/798177111178" class="btn btn-wa">💬 Написать в WhatsApp</a>
                 <a href="https://t.me/+798177111178" class="btn btn-tg">✈️ Написать в Telegram</a>
             </div>
+
+            <!-- Блок с новыми функциями -->
+            <div class="action-buttons">
+                <button onclick="saveContact()" class="btn-secondary">💾 Сохранить контакт</button>
+                <button onclick="shareCard()" class="btn-secondary">📢 Поделиться</button>
+            </div>
+
         </div>
         
         <div class="footer">
             Работаю ежедневно.<br>Быстрый выезд в ваш район.
         </div>
     </div>
+
+    <!-- Скрипты для работы новых кнопок -->
+    <script>
+        // Функция сохранения контакта (создает файл визитки .vcf)
+        function saveContact() {
+            const vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Мастер Николай\nORG:Ремонт бытовой техники\nTEL;TYPE=CELL:+798177111178\nURL:https://tip-top100.github.io/MasterFix/\nEND:VCARD";
+            const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "Nikolay_Master.vcf";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Функция "Поделиться" (вызывает стандартное окно отправки на телефоне)
+        function shareCard() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Мастер Николай — Ремонт техники',
+                    text: 'Советую отличного мастера по ремонту бытовой техники. Работает честно и дает гарантию!',
+                    url: 'https://tip-top100.github.io/MasterFix/'
+                }).catch((error) => console.log('Ошибка шаринга', error));
+            } else {
+                alert('Просто скопируйте ссылку в адресной строке и отправьте друзьям: https://tip-top100.github.io/MasterFix/');
+            }
+        }
+    </script>
 
 </body>
 </html>
