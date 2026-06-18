@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Николай — Ремонт бытовой техники</title>
     
-    <!-- Open Graph разметка для красивых ссылок в WhatsApp/Telegram -->
     <meta property="og:title" content="Николай — Ремонт бытовой техники">
     <meta property="og:description" content="Быстрый выезд, честные цены и гарантия. Жмите на картинку, чтобы сохранить контакты!">
     <meta property="og:image" content="avatar.jpg">
@@ -37,7 +36,7 @@
             border-bottom-right-radius: 25px; 
         }
         
-        /* Специальная обертка для автоматического кадрирования фото */
+        /* Убрал зум, теперь фото встанет идеально */
         .avatar-wrapper {
             width: 140px; 
             height: 140px; 
@@ -52,8 +51,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 20%;
-            transform: scale(1.35); 
+            object-position: center top; /* Фокус чуть выше центра */
         }
 
         h1 { 
